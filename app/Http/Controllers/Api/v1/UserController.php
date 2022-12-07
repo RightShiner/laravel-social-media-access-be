@@ -82,6 +82,7 @@ class UserController extends Controller
             ]);
         } else {
             $checkUser = User::where('id',Auth::user()->id)->first();
+            $checkUser['profile_pic'] = asset('uploads/profile_pictures/' . Auth::user()->id).'/'.$checkUser['profile_pic'];
             $checkUser['accessToken'] = Auth()->user()->createToken('authToken')->accessToken;
             return response()->json([
                 'status' => 1,
